@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ import jakarta.persistence.Table;
 	public Order(Long id, Instant moment, User client) {
 		super();
 		this.id = id;
-		moment = moment;
+		this.moment = moment;
 		this.client = client;
 	}
 
@@ -46,6 +47,7 @@ import jakarta.persistence.Table;
 		this.id = id;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	public Instant getMoment() {
 		return moment;
 	}
